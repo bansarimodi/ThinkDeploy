@@ -1,7 +1,7 @@
-from langgraph.graph import StateGraph
+from langgraph.graph import StateGraph, START, END
 from state import ThinkDeployState
 
-# Import node functions
+# Core generation nodes
 from nodes.user_story import generate_user_stories
 from nodes.design_project import design_project
 from nodes.generate_code import generate_code
@@ -15,27 +15,46 @@ from nodes.qa_testing_review import qa_testing_review
 from nodes.deployment import deployment
 from nodes.end import end
 
+# Feedback/review nodes
+from nodes.user_story_review import review_user_stories
+from nodes.review_doc import review_and_feedback
+
 def build_graph():
     builder = StateGraph(ThinkDeployState)
 
+    # Generation nodes
     builder.add_node("GenerateUserStories", generate_user_stories)
+    builder.add_node("UserStoryReview", review_user_stories)
+
     builder.add_node("DesignProject", design_project)
+    builder.add_node("DesignReview", review_and_feedback)
+
     builder.add_node("GenerateCode", generate_code)
     builder.add_node("ReviewCode", review_code)
+
     builder.add_node("GenerateSecurityRecommendation", generate_security_recommendation)
     builder.add_node("SecurityReview", security_review)
+
     builder.add_node("GenerateTestCases", generate_test_cases)
     builder.add_node("TestCasesReview", test_cases_review)
+
     builder.add_node("QATesting", qa_testing)
     builder.add_node("QATestingReview", qa_testing_review)
+
     builder.add_node("Deployment", deployment)
     builder.add_node("End", end)
 
+    # Graph flow
     builder.set_entry_point("GenerateUserStories")
-    builder.add_edge("GenerateUserStories", "DesignProject")
-    builder.add_edge("DesignProject", "GenerateCode")
+    builder.add_edge("GenerateUserStories", "UserStoryReview")
+    builder.add_edge("UserStoryReview", "DesignProject")
+
+    builder.add_edge("DesignProject", "DesignReview")
+    builder.add_edge("DesignReview", "GenerateCode")
+
     builder.add_edge("GenerateCode", "ReviewCode")
     builder.add_edge("ReviewCode", "GenerateSecurityRecommendation")
+
     builder.add_edge("GenerateSecurityRecommendation", "SecurityReview")
     builder.add_edge("SecurityReview", "GenerateTestCases")
     builder.add_edge("GenerateTestCases", "TestCasesReview")
@@ -49,3 +68,19 @@ def build_graph():
     builder.add_edge("Deployment", "End")
 
     return builder.compile()
+
+# Optional: Mermaid diagram output for visualization or research documentation
+if __name__ == "__main__":
+    from IPython.display import Image, display
+
+    compiled_graph = build_graph()
+
+    print("\n🧠 Mermaid Diagram Code:\n")
+    print(compiled_graph.get_graph().draw_mermaid())
+
+    try:
+        # Render diagram if in Jupyter or compatible notebook
+        display(Image(compiled_graph.get_graph().draw_mermaid_png()))
+    except Exception as e:
+        print("\n[Note] PNG rendering skipped — likely not running in Jupyter.")
+        print(f"Error: {e}")
