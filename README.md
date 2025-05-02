@@ -1,4 +1,4 @@
-# ThinkDeploy — The AI Software Architect That Builds It All
+# ThinkDeploy - The AI Software Architect That Builds It All
 
 **ThinkDeploy** is an AI-powered automation platform that transforms high-level software ideas into complete, deployment-ready solutions. Built with LangGraph and powered by LLaMA 3 via the Groq API, ThinkDeploy mirrors the entire Software Development Life Cycle (SDLC) with human-in-the-loop feedback at every stage.
 
