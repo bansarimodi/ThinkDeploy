@@ -42,31 +42,6 @@ All done through an AI-first, human-approved pipeline.
 | PDF Reports     | FPDF                           |
 | State Handling  | Pydantic (SDLCState)           |
 
----
-
-## 🔁 Visual Workflow
-
-```mermaid
-graph TD
-    A[Start] --> B[Input Requirements]
-    B --> C[Generate User Story]
-    C --> D[Design Project]
-    D --> E{Human Review}
-    E -- Revise --> D
-    E -- Approve --> F[Generate Code]
-    F --> G[Code Review]
-    G --> H[Security Agent]
-    H --> I[Generate Test Cases]
-    I --> J{Test Case Review (Human)}
-    J -- Revise --> I
-    J -- Approve --> K[QA Testing]
-    K --> L{QA Testing Review (Human)}
-    L -- Revise --> F
-    L -- Approve --> M[Deployment Agent]
-    M --> N[End]
-```
-
----
 
 ## 🛠 Project Structure
 
