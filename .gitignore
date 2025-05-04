@@ -1,35 +1,56 @@
-# Ignore Python cache and compiled files
+# Python cache
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-*.so
-*.egg-info/
-dist/
-build/
+*.pyc
 
-# Ignore .env for API keys and secrets
-.env
-
-# Ignore local Streamlit cache
-.streamlit/
-*.stlite/
-.stlite/
-
-# VSCode settings (optional)
-.vscode/
-
-# Ignore virtual environments
+# Virtual environment
 venv/
-env/
-.venv/
 .env/
+*.env
 
-# Jupyter Notebook checkpoints (if any)
+# VSCode and IDE config
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Output artifacts
+*.log
+*.pdf
+*.sqlite
+*.db
+*.zip
+*.tar.gz
+
+# Streamlit-specific
+.streamlit/config.toml
+.streamlit/secrets.toml
+
+# LangGraph run caches or outputs (if any custom path used)
+langgraph_outputs/
+artifacts/
+
+# Jupyter notebooks (if used)
 .ipynb_checkpoints/
 
-# Ignore output files like Graphviz/PNG exports
-*.png
-*.svg
-*.pdf
-workflow_graph*
+# Node modules (in case you use frontend)
+node_modules/
+
+# Test outputs
+coverage/
+htmlcov/
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+coverage.xml
+*.spec
+test-results/
+
+# GitHub workflows secrets
+.github/*.env
+.github/workflows/*secrets*
