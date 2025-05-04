@@ -1,8 +1,10 @@
-streamlit
-langgraph
-langchain
-langchain-groq
 pydantic
+langchain
+langchain_core
+langchain_groq
 python-dotenv
+langgraph
+streamlit
+Graphviz
 fpdf
-IPython
+langchain_community
