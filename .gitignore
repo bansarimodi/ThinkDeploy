@@ -1,0 +1,35 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# Ignore .env for API keys and secrets
+.env
+
+# Ignore local Streamlit cache
+.streamlit/
+*.stlite/
+.stlite/
+
+# VSCode settings (optional)
+.vscode/
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter Notebook checkpoints (if any)
+.ipynb_checkpoints/
+
+# Ignore output files like Graphviz/PNG exports
+*.png
+*.svg
+*.pdf
+workflow_graph*
